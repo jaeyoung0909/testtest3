@@ -3,36 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>청소 일정</title>
-  <script src="https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js"></script>
 </head>
 <body>
   <h2>📅 청소 일정</h2>
-  <ul id="events"></ul>
 
-  <script>
-    const icsUrl = "https://www.airbnb.co.kr/calendar/ical/1645580986024161961.ics?t=53c9755b3fed47689ccf1ea5ebbea2a5";
+  <iframe 
+    src="https://calendar.google.com/calendar/embed?src=cb240voofodpsclfsnfh00pbr5v1oh3p%40import.calendar.google.com&ctz=Asia%2FSeoul"
+    style="border: 0"
+    width="100%"
+    height="700"
+    frameborder="0"
+    scrolling="no">
+  </iframe>
 
-    fetch(icsUrl)
-      .then(res => res.text())
-      .then(data => {
-        const jcalData = ICAL.parse(data);
-        const comp = new ICAL.Component(jcalData);
-        const events = comp.getAllSubcomponents("vevent");
-
-        const list = document.getElementById("events");
-
-        events.forEach(event => {
-          const e = new ICAL.Event(event);
-
-          const li = document.createElement("li");
-          li.innerText =
-            e.startDate.toJSDate().toLocaleString() +
-            " ~ " +
-            e.endDate.toJSDate().toLocaleString();
-
-          list.appendChild(li);
-        });
-      });
-  </script>
 </body>
 </html>
